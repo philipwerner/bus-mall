@@ -24,17 +24,45 @@ function randomImage(){
   Image.imgEl1.src = Image.all[randomIndex].source;
   Image.imgEl1.alt = Image.all[randomIndex].name;
 
+  Image.all[randomIndex].timesShown += 1;
+  console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
+
+}
+
+function randomImage2(){
+  var randomIndex = Math.floor(Math.random() * Image.all.length);
+
   Image.imgEl2.src = Image.all[randomIndex].source;
   Image.imgEl2.alt = Image.all[randomIndex].name;
+
+
+  Image.all[randomIndex].timesShown += 1;
+  console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
+
+}
+
+// if(randomImage2() === randomImage()){
+//   console.log('re-roll');
+//   randomImage2();
+// } else {
+//
+// }
+
+function randomImage3(){
+
+  var randomIndex = Math.floor(Math.random() * Image.all.length);
 
   Image.imgEl3.src = Image.all[randomIndex].source;
   Image.imgEl3.alt = Image.all[randomIndex].name;
 
-  Image.all[randomIndex].timeShown += 1;
-  console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomindex].timesShown + '.');
-};
+  Image.all[randomIndex].timesShown += 1;
+  console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
-document.getElementById('image1').addEventListener('click', randomImage);
-document.getElementById('image2').addEventListener('click', randomImage);
-document.getElementById('image3').addEventListener('click', randomImage);
+}
+
+document.getElementById('products').addEventListener('click', randomImage);
+document.getElementById('products').addEventListener('click', randomImage2);
+document.getElementById('products').addEventListener('click', randomImage3);
 randomImage();
+randomImage2();
+randomImage3();
