@@ -1,0 +1,18 @@
+*{
+  /*border: 1px dotted black;*/
+}
+img {
+  float: left;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  margin: auto 40px;
+  position: relative;
+}
+.products {
+width: 600px;
+margin-top: 50px;
+}
+.list {
+  float: left;
+}
