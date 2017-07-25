@@ -95,6 +95,7 @@ function handleClick(e){
   console.log(Image.totalClicks);
   if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
+    userInstructions.innerHTML = ' ';
     showList();
     return drawChart();
   }
@@ -161,6 +162,9 @@ function drawChart(){
     type: 'bar',
     data: data,
     options: {
+      legend: {
+        display: false
+      },
       responsive: false,
       animation: {
         duration: 750,

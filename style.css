@@ -28,7 +28,7 @@ ul {
 }
 .instructions {
   text-align: center;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
   width: 800px;
   margin: 30px auto;
 }
