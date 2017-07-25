@@ -1,20 +1,31 @@
 *{
   /*border: 1px dotted black;*/
 }
-.products {
-  border: 2px solid black;
-  width: 960px;
-  margin: 50px auto;
-}
+
 img {
   border: 1px solid black;
   float: left;
   width: 200px;
   height: 200px;
-  display: inline-block;
-  margin: auto 40px;
+  display: flex;
+  margin: 50px 50px 50px 0px;
   position: relative;
 }
+.left {
+  margin-left: 40px;
+}
 .container {
+  border: 2px solid black;
+  width: 800px;
+  height: 300px;
   margin: 50px auto;
+}
+ul {
+  float: left;
+}
+.instructions {
+  text-align: center;
+  border: 3px solid red;
+  width: 800px;
+  margin: 30px auto;
 }

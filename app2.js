@@ -81,7 +81,7 @@ function handleClick(e){
   }
 
   console.log(Image.totalClicks);
-  if(Image.totalClicks === 25){
+  if(Image.totalClicks === 2){
     Image.container.removeEventListener('click', handleClick);
     return showList();
   }
