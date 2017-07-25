@@ -32,7 +32,7 @@ var randomImage = function(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
-}
+};
 
 var randomImage2 = function(){
   var randomIndex = Math.floor(Math.random() * Image.all.length);
@@ -47,7 +47,7 @@ var randomImage2 = function(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
-}
+};
 
 
 var randomImage3 = function(){
@@ -64,7 +64,7 @@ var randomImage3 = function(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
-}
+};
 
 function deDuplicate (){
   if(Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
