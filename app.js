@@ -27,6 +27,7 @@ function randomImage(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
+  deDuplicate();
 }
 
 function randomImage2(){
@@ -39,14 +40,9 @@ function randomImage2(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
+  deDuplicate();
 }
 
-// if(randomImage2() === randomImage()){
-//   console.log('re-roll');
-//   randomImage2();
-// } else {
-//
-// }
 
 function randomImage3(){
 
@@ -58,8 +54,18 @@ function randomImage3(){
   Image.all[randomIndex].timesShown += 1;
   console.log(Image.all[randomIndex].name + ' has been shown ' + Image.all[randomIndex].timesShown + '.');
 
+  deDuplicate();
 }
 
+function deDuplicate (){
+  if(Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
+    console.log('re-roll 1');
+    randomImage();
+  } else if(Image.imgEl3.src === Image.imgEl2.src) {
+    console.log('re-roll 2');
+    randomImage2();
+  };
+}
 // function onClick(){
 //   var randomIndex = Math.floor(Math.random() * Image)
 //   Image.all[randomIndex].timesClicked += 1;
@@ -69,9 +75,9 @@ function randomImage3(){
 document.getElementById('products').addEventListener('click', randomImage);
 document.getElementById('products').addEventListener('click', randomImage2);
 document.getElementById('products').addEventListener('click', randomImage3);
-document.getElementById('image1').addEventListener('click', onClick);
-document.getElementById('image2').addEventListener('click', onClick);
-document.getElementById('image3').addEventListener('click', onClick);
+// document.getElementById('image1').addEventListener('click', onClick);
+// document.getElementById('image2').addEventListener('click', onClick);
+// document.getElementById('image3').addEventListener('click', onClick);
 randomImage();
 randomImage2();
 randomImage3();
