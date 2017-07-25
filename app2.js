@@ -68,6 +68,7 @@ function showList(){
     liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' and was clicked ' + Image.all[i].timesClicked + ' times.';
     ulEl.appendChild(liEl);
   }
+  selections.innerHTML = ' ';
 }
 
 function handleClick(e){
@@ -81,7 +82,7 @@ function handleClick(e){
   }
 
   console.log(Image.totalClicks);
-  if(Image.totalClicks === 2){
+  if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
     return showList();
   }
