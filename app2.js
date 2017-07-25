@@ -13,6 +13,9 @@ Image.all = [];
 Image.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
 var previouslyShown = [];
+var titles = [];
+var clicks = [];
+var chartDrawn = false;
 
 for(var i = 0; i < Image.allNames.length; i++){
   new Image(Image.allNames[i]);
@@ -22,6 +25,13 @@ Image.imgEl1 = document.getElementById('image1');
 Image.imgEl2 = document.getElementById('image2');
 Image.imgEl3 = document.getElementById('image3');
 Image.container = document.getElementById('products');
+
+function updateChartArrays(){
+  for(var i = 0; i < Image.all.length; i++){
+    titles[i] = Image.all[i].name;
+    clicks[i] = Image.all[i].timesClicked;
+  }
+}
 
 function makeRandomNumber(){
   return Math.floor(Math.random() * Image.all.length);
@@ -78,16 +88,99 @@ function handleClick(e){
     if(e.target.alt === Image.all[i].name){
       // tally a click
       Image.all[i].timesClicked += 1;
+      updateChartArrays();
     }
   }
 
   console.log(Image.totalClicks);
   if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
-    return showList();
+    showList();
+    return drawChart();
   }
   displayImages();
 }
 
+// Chart Stuffs
+
+var data = {
+  labels: titles,
+  datasets: [
+    {
+      data: clicks,
+      backgroundColor: [
+        'black',
+        'red',
+        'blue',
+        'yellow',
+        'orange',
+        'black',
+        'red',
+        'blue',
+        'yellow',
+        'orange',
+        'black',
+        'red',
+        'blue',
+        'yellow',
+        'orange',
+        'black',
+        'red',
+        'blue',
+        'yellow',
+        'orange'
+      ],
+      hoverBackgroundColor: [
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green',
+        'green'
+      ]
+    }]
+};
+
+function drawChart(){
+  var ctx = document.getElementById('surveyTable').getContext('2d');
+  surveyChart = new Chart(ctx,{
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false,
+      animation: {
+        duration: 750,
+        easing: 'easeOutBounce'
+      }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
+  });
+  chartDrawn = true;
+}
+
+
 displayImages();
 Image.container.addEventListener('click', handleClick);
+// document.getElementById('chartButton').addEventListener('click', drawChart);
