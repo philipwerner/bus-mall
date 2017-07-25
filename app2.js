@@ -12,6 +12,8 @@ Image.totalClicks = 0;
 Image.all = [];
 Image.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
+var previouslyShown = [];
+
 for(var i = 0; i < Image.allNames.length; i++){
   new Image(Image.allNames[i]);
 };
@@ -28,15 +30,20 @@ function makeRandomNumber(){
 function displayImages(){
   // generate 3 random numbers
   // ensure those numbers are unique
+  console.log(previouslyShown, 'previously shown');
   var numbers = [];
   numbers[0] = makeRandomNumber();
+  while(numbers[0] === previouslyShown[0] || numbers[0] === previouslyShown[1] || numbers[0] === previouslyShown[2]){
+    console.log('after click image 1 duped');
+    numbers[0] = makeRandomNumber();
+  }
   numbers[1] = makeRandomNumber();
-  while(numbers[0] === numbers[1]){
+  while(numbers[0] === numbers[1] || numbers[1] === previouslyShown[0] || numbers[1] === previouslyShown[1] || numbers[1] === previouslyShown[2]){
     console.log('image 2 duped');
     numbers[1] = makeRandomNumber();
   }
   numbers[2] = makeRandomNumber();
-  while(numbers[2] === numbers[1] || numbers[2] === numbers[0]){
+  while(numbers[2] === numbers[1] || numbers[2] === numbers[0] || numbers[2] === previouslyShown[0] || numbers[2] === previouslyShown[1] || numbers[2] === previouslyShown[2]){
     console.log('image 3 duped');
     numbers[2] = makeRandomNumber();
   }
@@ -49,6 +56,8 @@ function displayImages(){
   Image.all[numbers[0]].timesShown += 1;
   Image.all[numbers[1]].timesShown += 1;
   Image.all[numbers[2]].timesShown += 1;
+  console.log(numbers, ' currently showing');
+  previouslyShown = numbers;
 }
 
 function showList(){
@@ -63,11 +72,6 @@ function showList(){
 
 function handleClick(e){
   Image.totalClicks += 1;
-  console.log(Image.totalClicks);
-  if(Image.totalClicks === 3){
-    Image.container.removeEventListener('click', handleClick);
-    showList();
-  }
   console.log(e.target.alt);
   for(var i = 0; i < Image.all.length; i++){
     if(e.target.alt === Image.all[i].name){
@@ -76,6 +80,11 @@ function handleClick(e){
     }
   }
 
+  console.log(Image.totalClicks);
+  if(Image.totalClicks === 3){
+    Image.container.removeEventListener('click', handleClick);
+    return showList();
+  }
   displayImages();
 }
 
