@@ -80,19 +80,20 @@ function getRandoms(){
   randomImage();
   randomImage2();
   randomImage3();
+  afterClick();
 }
-// function afterClick (){
-//   if(Image.imgEl1.src === Image.imgEl1.src || Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
-//     console.log('re-roll 1 after clicked');
-//     randomImage();
-//   } else if(Image.imgEl2.src === Image.imgEl1.src || Image.imgEl2.src === Image.imgEl2.src || Image.imgEl2.src === Image.imgEl3.src) {
-//     console.log('re-roll 2 after clicked');
-//     randomImage2();
-//   } else if(Image.imgEl3.src === Image.imgEl1.src || Image.imgEl3.src === Image.imgEl2.src || Image.imgEl3.src === Image.imgEl3.src){
-//     console.log('re-roll 3 after clicked');
-//     randomImage3();
-//   }
-// }
+function afterClick (){
+  if(Image.imgEl1.src === Image.imgEl1.src || Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src || Image.imgEl2.src === Image.imgEl2.src || Image.imgEl2.src === Image.imgEl3.src || Image.imgEl3.src === Image.imgEl3.src){
+    console.log('re-roll after clicked');
+    // getRandoms();
+  // } else if(Image.imgEl2.src === Image.imgEl1.src || Image.imgEl2.src === Image.imgEl2.src || Image.imgEl2.src === Image.imgEl3.src) {
+  //   console.log('re-roll 2 after clicked');
+  //   randomImage2();
+  // } else if(Image.imgEl3.src === Image.imgEl1.src || Image.imgEl3.src === Image.imgEl2.src || Image.imgEl3.src === Image.imgEl3.src){
+  //   console.log('re-roll 3 after clicked');
+  //   randomImage3();
+  }
+}
 // function onClick(){
 //   var randomIndex = Math.floor(Math.random() * Image)
 //   Image.all[randomIndex].timesClicked += 1;
@@ -100,8 +101,7 @@ function getRandoms(){
 // }
 
 document.getElementById('products').addEventListener('click', getRandoms);
-// document.getElementById('products').addEventListener('click', randomImage2);
-// document.getElementById('products').addEventListener('click', randomImage3);
+
 // afterClick();
 // document.getElementById('image1').addEventListener('click', onClick);
 // document.getElementById('image2').addEventListener('click', onClick);
