@@ -3,15 +3,17 @@ var previouslyShown = [];
 var titles = [];
 var clicks = [];
 var chartDrawn = false;
-var hasStorage = (function(){
-  try {
-    localStorage.setItem('clicksStringified', clicksStringified);
-    localStorage.getItem(clicksStringified);
-    return true;
-  } catch (exception){
-    return false;
-  }
-}());
+var hasStorage = 0;
+var clicksStringified = 0;
+// var hasStorage = (function(){
+//   try {
+//     localStorage.setItem('clicksStringified', clicksStringified);
+//     localStorage.getItem(clicksStringified);
+//     return true;
+//   } catch (exception){
+//     return false;
+//   }
+// }());
 
 function Image(name){
   this.name = name;
@@ -101,6 +103,8 @@ function handleClick(e){
     if(e.target.alt === Image.all[i].name){
       // tally a click
       Image.all[i].timesClicked += 1;
+      clicksStringified = JSON.stringify(Image.timesClicked);
+      localStorage.setItem('clicksStringified', clicksStringified);
       updateChartArrays();
     }
 
@@ -113,8 +117,6 @@ function handleClick(e){
     products.innerHTML = ' ';
         // showList();
     return drawChart();
-    clicksStringified = JSON.stringify(clicks);
-    localStorage.setItem('clicksStringified', clicksStringified);
   }
   displayImages();
 }
@@ -201,9 +203,14 @@ function drawChart(){
   chartDrawn = true;
 }
 
-if(hasStorage === true){
-  var clicksGood = localStorage.getItem('clicksStringified');
-  clicks = JSON.parse(clicksGood);
+if(typeof(localStorage.getItem(clicksStringified)
+) === 'undefined'){
+  hasStorage = 1;
+};
+
+if(hasStorage === 0){
+  var clicksGood = localStorage.getItem(clicksStringified);
+  Image.timesClicked = JSON.parse(clicksGood);
 }else{
   // displayImages();
   for(var i = 0; i < Image.allNames.length; i++){
