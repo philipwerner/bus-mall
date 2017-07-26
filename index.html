@@ -4,17 +4,28 @@
     <meta charset="utf-8">
     <title>Buss Mall Marketing</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
   </head>
   <body>
-    <h1>Lets display some images!!!</h1>
-    <p>Click the image of the item you would most likely buy.</p>
-    <p>Three random pictures will appear and will cycle 25 times.</p>
-      <section id="products">
-        <img id="image1" />
-        <img id="image2" />
-        <img id="image3" />
+    <section class="instructions" id="userInstructions">
+      <h1>WHICH ITEM DO YOU LIKE THE BEST?</h1>
+      <p>Click the image of the item you would most likely buy.</p>
+      <p>Three random pictures will appear and will cycle 25 times.</p>
+      <!-- <button id="chartButton">Look At Chart</button> -->
+    </section>
+
+
+    <div id="selections">
+      <section id="products" class="container">
+        <img id="image1" class="left"/>
+        <img id="image2" class="center"/>
+        <img id="image3" class="right"/>
       </section>
-      <ul id="list"></ul>
+    </div>
+
+    <canvas id="surveyTable" width="960px" height="400px"></canvas>
+    <ul id="list"></ul>
+
     <script src="app2.js"></script>
   </body>
 </html>
