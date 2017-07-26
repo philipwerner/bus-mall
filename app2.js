@@ -17,9 +17,6 @@ Image.all = [];
 Image.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
 
-for(var i = 0; i < Image.allNames.length; i++){
-  new Image(Image.allNames[i]);
-};
 
 Image.imgEl1 = document.getElementById('image1');
 Image.imgEl2 = document.getElementById('image2');
@@ -93,12 +90,17 @@ function handleClick(e){
       Image.all[i].timesClicked += 1;
       updateChartArrays();
     }
+
   }
 
   console.log(Image.totalClicks);
   if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
-    userInstructions.innerHTML = ' ';
+    // userInstructions.innerHTML = ' ';
+    products.innerHTML = ' ';
+    // var clicksStringified = JSON.stringify(clicks);
+    // localStorage.setItem('clicksStringified', clicksStringified);
+    // var titlesStringified = JSON.stringify(titles)
     // showList();
     return drawChart();
   }
@@ -187,7 +189,18 @@ function drawChart(){
   chartDrawn = true;
 }
 
+// if{LS data exists}{
+//   load it
+// }else{
+//     initializa from scratch
+//     create instances
+// }
 
-displayImages();
+
+for(var i = 0; i < Image.allNames.length; i++){
+  new Image(Image.allNames[i]);
+};
+
 Image.container.addEventListener('click', handleClick);
+displayImages();
 // document.getElementById('chartButton').addEventListener('click', drawChart);
