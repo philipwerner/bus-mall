@@ -3,6 +3,15 @@ var previouslyShown = [];
 var titles = [];
 var clicks = [];
 var chartDrawn = false;
+var hasStorage = (function(){
+  try {
+    localStorage.setItem('clicksStringified', clicksStringified);
+    localStorage.getItem(clicksStringified);
+    return true;
+  } catch (exception){
+    return false;
+  }
+}());
 
 function Image(name){
   this.name = name;
@@ -77,7 +86,11 @@ function displayImages(){
 //   }
 //   selections.innerHTML = ' ';
 // }
-
+function clearClick(e){
+  if(e.target.id === 'clearButton'){
+    localStorage.clear();
+  }
+}
 function handleClick(e){
   if(e.target.id === 'products'){
     return alert('Click an Image please!!');
@@ -99,8 +112,9 @@ function handleClick(e){
     // userInstructions.innerHTML = ' ';
     products.innerHTML = ' ';
         // showList();
-    localStorage.setItem('clicks', JSON.stringify(clicks));
     return drawChart();
+    clicksStringified = JSON.stringify(clicks);
+    localStorage.setItem('clicksStringified', clicksStringified);
   }
   displayImages();
 }
@@ -187,17 +201,19 @@ function drawChart(){
   chartDrawn = true;
 }
 
-// if(window.localStorage.setItem('clicksStringified')){
-//   clicks = JSON.parse(localStorage.clicks);
-// }else{
-//
-// };
-
-for(var i = 0; i < Image.allNames.length; i++){
-  new Image(Image.allNames[i]);
+if(hasStorage === true){
+  var clicksGood = localStorage.getItem('clicksStringified');
+  clicks = JSON.parse(clicksGood);
+}else{
+  // displayImages();
+  for(var i = 0; i < Image.allNames.length; i++){
+    new Image(Image.allNames[i]);
+  }
 };
 
 
+
 Image.container.addEventListener('click', handleClick);
+clearButton.addEventListener('click', clearClick);
 displayImages();
 // document.getElementById('chartButton').addEventListener('click', drawChart);
