@@ -70,16 +70,16 @@ function displayImages(){
   previouslyShown = numbers;
 }
 
-function showList(){
-  var ulEl = document.getElementById('list');
-
-  for(var i = 0; i < Image.all.length; i++){
-    var liEl = document.createElement('li');
-    liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' and was clicked ' + Image.all[i].timesClicked + ' times.';
-    ulEl.appendChild(liEl);
-  }
-  selections.innerHTML = ' ';
-}
+// function showList(){
+//   var ulEl = document.getElementById('list');
+//
+//   for(var i = 0; i < Image.all.length; i++){
+//     var liEl = document.createElement('li');
+//     liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' and was clicked ' + Image.all[i].timesClicked + ' times.';
+//     ulEl.appendChild(liEl);
+//   }
+//   selections.innerHTML = ' ';
+// }
 
 function handleClick(e){
   Image.totalClicks += 1;
@@ -96,7 +96,7 @@ function handleClick(e){
   if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
     userInstructions.innerHTML = ' ';
-    showList();
+    // showList();
     return drawChart();
   }
   displayImages();
