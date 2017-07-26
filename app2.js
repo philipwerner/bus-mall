@@ -98,10 +98,8 @@ function handleClick(e){
     Image.container.removeEventListener('click', handleClick);
     // userInstructions.innerHTML = ' ';
     products.innerHTML = ' ';
-    // var clicksStringified = JSON.stringify(clicks);
-    // localStorage.setItem('clicksStringified', clicksStringified);
-    // var titlesStringified = JSON.stringify(titles)
-    // showList();
+        // showList();
+    localStorage.setItem('clicks', JSON.stringify(clicks));
     return drawChart();
   }
   displayImages();
@@ -189,17 +187,16 @@ function drawChart(){
   chartDrawn = true;
 }
 
-// if{LS data exists}{
-//   load it
+// if(window.localStorage.setItem('clicksStringified')){
+//   clicks = JSON.parse(localStorage.clicks);
 // }else{
-//     initializa from scratch
-//     create instances
-// }
-
+//
+// };
 
 for(var i = 0; i < Image.allNames.length; i++){
   new Image(Image.allNames[i]);
 };
+
 
 Image.container.addEventListener('click', handleClick);
 displayImages();
