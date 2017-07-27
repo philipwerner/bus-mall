@@ -3,17 +3,6 @@ var previouslyShown = [];
 var titles = [];
 var clicks = [];
 var chartDrawn = false;
-var hasStorage = 0;
-var clicksStringified = 0;
-// var hasStorage = (function(){
-//   try {
-//     localStorage.setItem('clicksStringified', clicksStringified);
-//     localStorage.getItem(clicksStringified);
-//     return true;
-//   } catch (exception){
-//     return false;
-//   }
-// }());
 
 function Image(name){
   this.name = name;
@@ -103,9 +92,10 @@ function handleClick(e){
     if(e.target.alt === Image.all[i].name){
       // tally a click
       Image.all[i].timesClicked += 1;
-      clicksStringified = JSON.stringify(Image.timesClicked);
-      localStorage.setItem('clicksStringified', clicksStringified);
+      // clicksStringified = JSON.stringify(clicks);
+      // localStorage.setItem('clicksStringified', clicksStringified);
       updateChartArrays();
+      localStorage.clicks = JSON.stringify(clicks);
     }
 
   }
@@ -203,21 +193,22 @@ function drawChart(){
   chartDrawn = true;
 }
 
-if(typeof(localStorage.getItem(clicksStringified)
-) === 'undefined'){
-  hasStorage = 1;
-};
+// if(typeof(localStorage.getItem('clicksStringified')) == null){
+//   hasStorage = 1;
+// };
 
-if(hasStorage === 0){
-  var clicksGood = localStorage.getItem(clicksStringified);
-  Image.timesClicked = JSON.parse(clicksGood);
+if(localStorage.clicks !== null){
+  console.log('you have storage');
+  clicks = JSON.parse(localStorage.clicks);
 }else{
+  console.log('no storage for you');
   // displayImages();
-  for(var i = 0; i < Image.allNames.length; i++){
-    new Image(Image.allNames[i]);
-  }
+
 };
 
+for(var i = 0; i < Image.allNames.length; i++){
+  new Image(Image.allNames[i]);
+}
 
 
 Image.container.addEventListener('click', handleClick);
