@@ -77,7 +77,11 @@ function displayImages(){
 //   }
 //   selections.innerHTML = ' ';
 // }
-
+function clearClick(e){
+  if(e.target.id === 'clearButton'){
+    localStorage.clear();
+  }
+}
 function handleClick(e){
   if(e.target.id === 'products'){
     return alert('Click an Image please!!');
@@ -88,7 +92,10 @@ function handleClick(e){
     if(e.target.alt === Image.all[i].name){
       // tally a click
       Image.all[i].timesClicked += 1;
+      // clicksStringified = JSON.stringify(clicks);
+      // localStorage.setItem('clicksStringified', clicksStringified);
       updateChartArrays();
+      localStorage.allImgProd = JSON.stringify(Image.all);
     }
 
   }
@@ -98,10 +105,7 @@ function handleClick(e){
     Image.container.removeEventListener('click', handleClick);
     // userInstructions.innerHTML = ' ';
     products.innerHTML = ' ';
-    // var clicksStringified = JSON.stringify(clicks);
-    // localStorage.setItem('clicksStringified', clicksStringified);
-    // var titlesStringified = JSON.stringify(titles)
-    // showList();
+        // showList();
     return drawChart();
   }
   displayImages();
@@ -189,18 +193,30 @@ function drawChart(){
   chartDrawn = true;
 }
 
-// if{LS data exists}{
-//   load it
+// if(typeof(localStorage.getItem('clicksStringified')) == null){
+//   hasStorage = 1;
+// };
+
+// if(localStorage.clicks !== null){
+//   console.log('you have storage');
+//   clicks = JSON.parse(localStorage.clicks);
 // }else{
-//     initializa from scratch
-//     create instances
-// }
+//   console.log('no storage for you');
+//   // displayImages();
+//
+// };
 
-
-for(var i = 0; i < Image.allNames.length; i++){
-  new Image(Image.allNames[i]);
-};
+if(localStorage.allImgProd){
+  Image.all = JSON.parse(localStorage.allImgProd);
+  console.log('Storage available');
+}else{
+  console.log('No damn storage');
+  for(var i = 0; i < Image.allNames.length; i++){
+    new Image(Image.allNames[i]);
+  }
+}
 
 Image.container.addEventListener('click', handleClick);
+clearButton.addEventListener('click', clearClick);
 displayImages();
 // document.getElementById('chartButton').addEventListener('click', drawChart);
