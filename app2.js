@@ -167,7 +167,7 @@ var data = {
 
 function drawChart(){
   var ctx = document.getElementById('surveyTable').getContext('2d');
-  surveyChart = new Chart(ctx,{
+  new Chart(ctx,{
     type: 'bar',
     data: data,
     options: {
