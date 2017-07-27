@@ -95,7 +95,7 @@ function handleClick(e){
       // clicksStringified = JSON.stringify(clicks);
       // localStorage.setItem('clicksStringified', clicksStringified);
       updateChartArrays();
-      localStorage.clicks = JSON.stringify(clicks);
+      localStorage.allImgProd = JSON.stringify(Image.all);
     }
 
   }
@@ -197,19 +197,24 @@ function drawChart(){
 //   hasStorage = 1;
 // };
 
-if(localStorage.clicks !== null){
-  console.log('you have storage');
-  clicks = JSON.parse(localStorage.clicks);
+// if(localStorage.clicks !== null){
+//   console.log('you have storage');
+//   clicks = JSON.parse(localStorage.clicks);
+// }else{
+//   console.log('no storage for you');
+//   // displayImages();
+//
+// };
+
+if(localStorage.allImgProd){
+  Image.all = JSON.parse(localStorage.allImgProd);
+  console.log('Storage available');
 }else{
-  console.log('no storage for you');
-  // displayImages();
-
-};
-
-for(var i = 0; i < Image.allNames.length; i++){
-  new Image(Image.allNames[i]);
+  console.log('No damn storage');
+  for(var i = 0; i < Image.allNames.length; i++){
+    new Image(Image.allNames[i]);
+  }
 }
-
 
 Image.container.addEventListener('click', handleClick);
 clearButton.addEventListener('click', clearClick);
