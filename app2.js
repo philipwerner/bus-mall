@@ -67,16 +67,6 @@ function displayImages(){
   previouslyShown = numbers;
 }
 
-// function showList(){
-//   var ulEl = document.getElementById('list');
-//
-//   for(var i = 0; i < Image.all.length; i++){
-//     var liEl = document.createElement('li');
-//     liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' and was clicked ' + Image.all[i].timesClicked + ' times.';
-//     ulEl.appendChild(liEl);
-//   }
-//   selections.innerHTML = ' ';
-// }
 function clearClick(e){
   if(e.target.id === 'clearButton'){
     localStorage.clear();
