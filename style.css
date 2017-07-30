@@ -11,6 +11,9 @@ img {
   margin: 50px 50px 50px 0px;
   position: relative;
 }
+img:hover {
+  border: 3px solid green;
+}
 .left {
   margin-left: 40px;
 }
@@ -27,9 +30,11 @@ ul {
   line-height: 24px;
 }
 .instructions {
+  background-color: blue;
   text-align: center;
+  border-style: groove;
   /*border: 3px solid red;*/
-  width: 800px;
+  width: 100%;
   margin: 30px auto;
 }
 button {
@@ -40,9 +45,14 @@ button {
   background: red;
   color: white;
 }
+button:active {
+  box-shadow: 0 2px 0 #006599;
+  transform: translateY(3px);
+}
+
 canvas {
   /*border: 1px solid black;*/
-  /*float: left;*/
+  float: left;
   display: inline;
   margin: 30px auto;
 }
