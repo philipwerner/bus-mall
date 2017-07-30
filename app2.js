@@ -92,8 +92,6 @@ function handleClick(e){
     if(e.target.alt === Image.all[i].name){
       // tally a click
       Image.all[i].timesClicked += 1;
-      // clicksStringified = JSON.stringify(clicks);
-      // localStorage.setItem('clicksStringified', clicksStringified);
       updateChartArrays();
       localStorage.allImgProd = JSON.stringify(Image.all);
     }
@@ -103,9 +101,7 @@ function handleClick(e){
   console.log(Image.totalClicks);
   if(Image.totalClicks === 25){
     Image.container.removeEventListener('click', handleClick);
-    // userInstructions.innerHTML = ' ';
-    products.innerHTML = ' ';
-        // showList();
+    selections.innerHTML = ' ';
     return drawChart();
   }
   displayImages();
